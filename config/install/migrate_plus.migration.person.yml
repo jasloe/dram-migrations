@@ -1,0 +1,18 @@
+# Migration metadata
+id: person
+label: Migrate list of people
+migration_group: mysql
+
+source:
+  plugin: person
+  key: migrate
+
+process:
+  title: name
+  field_dram_id: id
+
+destination:
+  plugin: 'entity:node'
+  default_bundle: person
+
+migration_dependencies: {}

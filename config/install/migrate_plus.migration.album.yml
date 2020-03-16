@@ -1,0 +1,30 @@
+# API key: 963B970DE3935A289107A620A2C99389E393ABBD43EA1D94FF2C3CEFA1A8B41C
+# Profile: newworldrecords
+
+# Migration metadata
+id: person
+label: Migrate list of albums
+migration_group: json
+
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: json
+  authentication:
+    plugin: basic
+    username:
+    password:
+  headers:
+    Accept: ''
+    Content-Type: 'application/json'
+
+
+process:
+  title: name
+  field_dram_id: id
+
+destination:
+  plugin: 'entity:node'
+  default_bundle: person
+
+migration_dependencies: {}
