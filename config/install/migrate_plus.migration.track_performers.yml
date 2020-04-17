@@ -1,0 +1,44 @@
+langcode: en
+status: true
+dependencies: {}
+id: track_performers
+migration_tags: csv
+label: "Migrating track performers from CSV file"
+
+source:
+  plugin: csv
+  track_changes: true
+  path: "public://migrations/track.csv"
+  delimiter: ","
+  enclosure: '"'
+  header_row_count: 1
+  ids: [id]
+
+process:
+  field_performer:
+    plugin: entity_lookup
+    source: person
+    ignore_case: true
+    value_key: title
+    entity_type: node
+    bundle_key: type
+    bundle: person
+  field_instruments:
+    - 
+      plugin: explode
+      source: instruments
+      delimiter: ;
+    - 
+      plugin: entity_lookup
+      source: instruments
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: instruments
+      value_key: name
+      ignore_case: true
+
+destination:
+  plugin: "entity_reference_revisions:paragraph"
+  default_bundle: performer
+
+migration_dependencies: null

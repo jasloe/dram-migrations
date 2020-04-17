@@ -1,18 +1,32 @@
-# Migration metadata
+langcode: en
+status: true
+dependencies: {}
 id: person
-label: Migrate list of people
-migration_group: mysql
+migration_tags: null
+label: "Migrate person content from csv source."
 
 source:
-  plugin: person
-  key: migrate
+  plugin: csv
+  track_changes: true
+  path: "public://migrations/person.csv"
+  delimiter: ","
+  enclosure: '"'
+  header_row_count: 1
+  ids: [id]
 
 process:
-  title: name
-  field_dram_id: id
+  type:
+    plugin: default_value
+    default_value: person
+  uid:
+    plugin: default_value
+    default_value: 59
+  title: title
+  field_person_name/given: given_name
+  field_person_name/family: family_name
 
 destination:
-  plugin: 'entity:node'
-  default_bundle: person
+  plugin: entity:node
 
+template: null
 migration_dependencies: {}

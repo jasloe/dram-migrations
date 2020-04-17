@@ -1,0 +1,52 @@
+langcode: en
+status: true
+dependencies: {}
+id: track
+migration_tags: csv
+label: "Migrate track content from csv source."
+
+source:
+  plugin: csv
+  track_changes: true
+  path: "public://migrations/track.csv"
+  delimiter: ","
+  enclosure: '"'
+  header_row_count: 1
+  ids: [id]
+
+process:
+  type:
+    plugin: default_value
+    default_value: track
+  uid:
+    plugin: default_value
+    default_value: 59
+  title: title
+  field_track_performers/target_id:
+    - 
+      plugin: migration
+      migration: track_performers
+      no_stub: true
+      source: id
+    -
+      plugin: explode
+      migration: track_performers
+      delimiter: |
+    - 
+      plugin: extract
+      index:
+        - "0"
+  field_track_performers/target_revision_id:
+    - plugin: migration
+      migration: track_performers
+      no_stub: true
+      source: id
+    - plugin: extract
+      index:
+        - "1"
+
+destination:
+  plugin: entity:node
+
+template: null
+migration_dependencies: {}

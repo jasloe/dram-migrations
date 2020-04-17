@@ -1,0 +1,90 @@
+
+
+# "participants" : [
+#   "Aki Takahashi|piano",
+#   "Essential Music"
+# ]
+
+# "participants": [
+#   {
+#     "name": "Aki Takahashi",
+#     "role": "Performer",
+#     "role_type": null,
+#     "instrument": "piano"
+#   },
+#   {
+#     "name": "Aki Takahashi",
+#     "role": "Performer",
+#     "role_type": null,
+#     "instrument": "piano"
+#   },
+# ]
+
+
+# count(participants)
+# add_field(participants.0.foo,bar)
+# add_field(names.0.source,participants.0)
+# add_field(names.1.source,participants.1)
+
+# set_field(names.0.source,participants.0)
+# # add_field(names.1.source,participants.1)
+
+# add_field("my.name2","nicolas")
+# set_array("foo","a","b","c")
+# add_field(foo.a,testing)
+
+# set_field('performers')
+# set_array(foo.bar)
+
+  #  "artists.0.0.0" : "David Tudor",
+  #  "artists.1.1.1" : "piano",
+  #  "artists.1.1.0" : "cactus",
+  #  "title" : "Another",
+  #  "artists.2.1.0" : "piano",
+  #  "artists.0.1.1" : "foobar",
+  #  "artists.0.1.0" : "electronics",
+  #  "artists.2.0.0" : "Aki Takahashi",
+  #  "artists.1.0.0" : "John Cage"
+
+remove_field(id)
+split_field(artists,'\|')
+split_field(artists.*,'\;')
+split_field(artists.*.*,':')
+
+move_field("artists.0.0.0","performers.0.name")
+move_field("artists.0.1.1","performers.0.instruments.1")
+move_field("artists.0.1.0","performers.0.instruments.0")
+
+move_field("artists.1.0.0","performers.1.name")
+move_field("artists.1.1.1","performers.1.instruments.1")
+move_field("artists.1.1.0","performers.1.instruments.0")
+
+move_field("artists.2.0.0","performers.2.name")
+move_field("artists.2.1.1","performers.2.instruments.1")
+move_field("artists.2.1.0","performers.2.instruments.0")
+
+move_field("artists.3.0.0","performers.3.name")
+move_field("artists.3.1.1","performers.3.instruments.1")
+move_field("artists.3.1.0","performers.3.instruments.0")
+
+move_field("artists.4.0.0","performers.4.name")
+move_field("artists.4.1.1","performers.4.instruments.1")
+move_field("artists.4.1.0","performers.4.instruments.0")
+
+move_field("artists.5.0.0","performers.5.name")
+move_field("artists.5.1.1","performers.5.instruments.1")
+move_field("artists.5.1.0","performers.5.instruments.0")
+
+remove_field(artists)
+
+
+# array(artists)
+
+# copy_field(artists,count_artists)
+# count(count_artists)
+
+
+
+# set_array(performers)
+# copy_field(artists,performers)
+
