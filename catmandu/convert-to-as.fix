@@ -1,0 +1,88 @@
+move_field(label,Label)
+add_field(Release-Format,"Album")
+move_field(album_ean,UPC)
+move_field(catalog_number,Catalog-Number)
+move_field(album_title,Release-Title)
+add_field(Release-Title-Version,'')
+move_field(primary_genre,Release-Categories)
+add_field(Preorder-Date,'')
+add_field(Metadata-Language,'English')
+add_field(Release-Advisory,'')
+add_field(Recording-Location,'')
+add_field(Image-Format,'jpg')
+add_field(Territory-Availability,'WW')
+add_field(iTunes-Price-Tier,'Mid/Front')
+add_field(Release-Producer,'')
+add_field(Release-Remixer,'')
+add_field(Release-Mixer,'')
+add_field(Release-Engineer,'')
+move_field(disc_number,Disc-Number)
+move_field(track_number,Track-Number)
+move_field(isrc,ISRC)
+replace_all(ISRC,[^a-zA-Z0-9],'')
+move_field(Track-Title,track_title)
+add_field(Track-Title-Version,'')
+add_field(Audio-File-Format,'wav')
+add_field(Track-Audio-Language,'English')
+add_field(Track-Advisory,'')
+add_field(Track-Stream-Date,'')
+add_field(Track-Download-Date,'')
+move_field(Release-Categories,Track-Categories)
+add_field(Track-Producer,'')
+add_field(Track-Remixer,'')
+add_field(Track-Mixer,'')
+add_field(Track-Engineer,'')
+add_field(Track-Lyricist,'')
+add_field(Track-Publisher,'')
+
+
+# handle dates
+move_field(street_date,Release-Date)
+move_field(street_date,Original-Release-Date)
+
+# c/p lines
+add_field(C-Line)
+add_field(P-Line)
+paste(C-Line,cline,cline_year,join_char: " ")
+paste(P-Line,pline,pline_year,join_char: " ")
+
+# release artists
+move_field(album_artist,Release-Display-Artist)
+move_field(album_artist,Release-Primary-Artist)
+
+# build track_artists array, then flatten
+split_field(track_artists,'\|')
+split_field(track_artists.*,'\;')
+split_field(track_artists.*.*,':')
+move_field("track_artists.0.0.0","temp.0.name")
+move_field("track_artists.1.0.0","temp.1.name")
+move_field("track_artists.2.0.0","temp.2.name")
+move_field("track_artists.3.0.0","temp.3.name")
+move_field("track_artists.4.0.0","temp.4.name")
+move_field("track_artists.5.0.0","temp.5.name")
+add_field(Track-Featured-Artist)
+paste(Track-Featured-Artist,temp.*.name,join_char:"|")
+
+
+# cleanup
+remove_field(track_artists)
+remove_field(temp)
+remove_field(track_movement)
+remove_field(cline)
+remove_field(cline_year)
+remove_field(pline)
+remove_field(pline_year)
+remove_field(active)
+remove_field(minutes)
+remove_field(seconds)
+
+# Rights-Holders
+# Release-Main-Artist
+# Release-Featured-Artist
+# Track-Composer
+# Track-Display-Artist
+# Track-Primary-Artist
+# Track-Main-Artist
+# Track-Featured-Artist
+
+split_date(Release-Date)

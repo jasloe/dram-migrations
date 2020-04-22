@@ -1,0 +1,13 @@
+split_field(track_artists,'\|')
+split_field(track_artists.*,'\;')
+split_field(track_artists.*.*,':')
+
+move_field("track_artists.0.0.0","track_artist.0.name")
+move_field("track_artists.1.0.0","track_artist.1.name")
+move_field("track_artists.2.0.0","track_artist.2.name")
+move_field("track_artists.3.0.0","track_artist.3.name")
+move_field("track_artists.4.0.0","track_artist.4.name")
+move_field("track_artists.5.0.0","track_artist.5.name")
+
+add_field(foo)
+paste(foo,track_artist.*.name,join_char:"|")

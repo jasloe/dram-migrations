@@ -1,0 +1,47 @@
+[{
+   "disc_number" : "1",
+   "catalog_number" : "MOD-CD-020",
+   "street_date" : "1/1/1992",
+   "minutes" : "1",
+   "isrc" : "US-4BP-04-00099",
+   "track_composer" : "Neely Bruce",
+   "album_composer" : "Neely Bruce",
+   "track_number" : "10",
+   "active" : "A",
+   "track_movement" : "I: Johnny Boccaccio Reports On The Plague",
+   "album_title" : "The Plague",
+   "cline" : "Mode",
+   "album_artist" : "Electric Phoenix",
+   "album_ean" : "764593002123",
+   "seconds" : "56",
+   "track_artist" : [
+      {
+         "name" : "Electric Phoenix"
+      },
+      {
+         "name" : "Neely Bruce",
+         "instruments" : [
+            "electric piano"
+         ]
+      },
+      {
+         "name" : "Ray Russell",
+         "instruments" : [
+            "electric guitar"
+         ]
+      },
+      {
+         "instruments" : [
+            "drums"
+         ],
+         "name" : "John Marshall"
+      }
+   ],
+   "label" : "Mode Records",
+   "cline_year" : "1992",
+   "primary_genre" : "20th Century",
+   "pline" : "Mode",
+   "track_title" : "The Plague ",
+   "publisher_info" : "self published",
+   "pline_year" : "1992"
+}]
